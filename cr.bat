@@ -10,5 +10,5 @@ IF NOT "%~1" == "" (
 )
 IF defined args SET args=%args:~1%
 
-call compile.bat
-call run.bat%args%
+call compile.bat %args%
+call run.bat %args%
