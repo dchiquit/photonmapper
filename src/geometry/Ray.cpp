@@ -9,10 +9,6 @@
 #include "Vector3D.h"
 
 namespace graphics {
-	Ray::Ray(Vector3D start, Vector3D end) :
-			start(start), direction(Vector3D { start, end }), normalized(
-					direction.normalized()) {
-	}
 
 	Ray::Ray(Vector3D start, Vector3D direction) :
 			start(start), direction(direction), normalized(

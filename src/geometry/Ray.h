@@ -13,7 +13,6 @@
 namespace graphics {
 	class Ray {
 		public:
-			Ray(Vector3D start, Vector3D end);
 			Ray(Vector3D start, Vector3D direction);
 			Ray(const Ray &ray);
 			virtual ~Ray();
