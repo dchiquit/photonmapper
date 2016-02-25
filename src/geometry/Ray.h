@@ -8,23 +8,22 @@
 #ifndef SRC_RAY_H_
 #define SRC_RAY_H_
 
-#include "Vector3D.h"
+#include "geometry\Vector3D.h"
 
 namespace graphics {
 	class Ray {
 		public:
 			Ray(Vector3D start, Vector3D direction);
-			Ray(const Ray &ray);
+//			Ray(const Ray &ray);
 			virtual ~Ray();
 
 			Vector3D getStart() const;
 			Vector3D getDirection() const;
-			Vector3D getNormalized() const;
 
 			Vector3D evaluateAtT(double t) const;
 
 		private:
-			const Vector3D start, direction, normalized;
+			const Vector3D start, direction;
 			friend std::ostream& operator<<(std::ostream& outs, const Ray& ray);
 	};
 }

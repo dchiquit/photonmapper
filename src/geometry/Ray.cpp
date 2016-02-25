@@ -11,14 +11,12 @@
 namespace graphics {
 
 	Ray::Ray(Vector3D start, Vector3D direction) :
-			start(start), direction(direction), normalized(
-					direction.normalized()) {
+			start(start), direction(direction.normalized()) {
 	}
 
-	Ray::Ray(const Ray &ray) :
-			start( { ray.start }), direction( { ray.direction }), normalized( {
-					ray.normalized }) {
-	}
+//	Ray::Ray(const Ray &ray) :
+//			start( { ray.start }), direction( { ray.direction.normalized() } ) {
+//	}
 
 	Ray::~Ray() {
 	}
@@ -31,12 +29,8 @@ namespace graphics {
 		return direction;
 	}
 
-	Vector3D Ray::getNormalized() const {
-		return normalized;
-	}
-
 	Vector3D Ray::evaluateAtT(double t) const {
-		auto offset = normalized * t;
+		auto offset = direction * t;
 		return start + offset;
 	}
 

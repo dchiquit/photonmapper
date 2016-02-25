@@ -64,40 +64,24 @@ Vector3D Vector3D::operator-() const {
 	return {-x, -y , -z};
 }
 
-Vector3D Vector3D::operator/(const long rhs) const {
-	return {x / rhs, y / rhs, z / rhs};
-}
-
 Vector3D Vector3D::operator/(const double rhs) const {
 	return {x / rhs, y / rhs, z / rhs};
-}
-
-Vector3D Vector3D::operator*(const long rhs) const {
-	return {x * rhs, y * rhs, z * rhs};
 }
 
 Vector3D Vector3D::operator*(const double rhs) const {
 	return {x * rhs, y * rhs, z * rhs};
 }
 
-Vector3D Vector3D::operator+(const long rhs) const {
-	return {x + rhs, y + rhs, z + rhs};
+double Vector3D::operator*(const Vector3D& v) const {
+	return dot(v);
 }
 
 Vector3D Vector3D::operator+(const double rhs) const {
 	return {x + rhs, y + rhs, z + rhs};
 }
 
-Vector3D Vector3D::operator-(const long rhs) const {
-	return {x - rhs, y - rhs, z - rhs};
-}
-
 Vector3D Vector3D::operator-(const double rhs) const {
 	return {x - rhs, y - rhs, z - rhs};
-}
-
-Vector3D operator*(const long lhs, const Vector3D& rhs) {
-	return rhs * lhs;
 }
 
 Vector3D operator*(const double lhs, const Vector3D& rhs) {
