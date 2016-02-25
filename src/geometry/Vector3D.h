@@ -20,8 +20,8 @@ public:
 
 	const double x, y, z;
 
-	Vector3D normalized() const;
-	double magnitude() const;
+	Vector3D normalized();
+	double magnitude();
 
 	Vector3D cross(const Vector3D& v) const;
 	double dot(const Vector3D& v) const;
@@ -42,12 +42,18 @@ public:
 
 	Vector3D operator-(const long rhs) const;
 	Vector3D operator-(const double rhs) const;
+	
+	bool operator== (const Vector3D &v) const;
+	bool operator!= (const Vector3D &v) const;
 
 private:
 	friend std::ostream& operator<<(std::ostream& outs, const Vector3D& vector);
 
 	friend Vector3D operator*(const long lhs, const Vector3D& rhs);
 	friend Vector3D operator*(const double lhs, const Vector3D& rhs);
+	
+	// only calculate this once because sqrt is costly
+	double _magnitude = 0;
 };
 
 } /* namespace graphics */

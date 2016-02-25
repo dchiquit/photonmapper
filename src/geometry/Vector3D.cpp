@@ -27,16 +27,16 @@ Vector3D::Vector3D(const Vector3D &vector) :
 Vector3D::~Vector3D() {
 }
 
-Vector3D Vector3D::normalized() const {
+Vector3D Vector3D::normalized() {
 	auto length = magnitude();
-	if (length < 0) {
-		length = -length;
-	}
 	return {x / length, y / length, z / length};
 }
 
-double Vector3D::magnitude() const {
-	return sqrt(x * x + y * y + z * z);
+double Vector3D::magnitude() {
+	if (_magnitude == 0) {
+		_magnitude = sqrt(x * x + y * y + z * z);
+	}
+	return _magnitude;
 }
 
 Vector3D Vector3D::cross(const Vector3D& v) const {
@@ -104,6 +104,12 @@ Vector3D operator*(const double lhs, const Vector3D& rhs) {
 	return rhs * lhs;
 }
 
+bool Vector3D::operator== (const Vector3D &v) const {
+	return x==v.x && y==v.y && z == v.z;
+}
+bool Vector3D::operator!= (const Vector3D &v) const {
+	return x!=v.x || y!=v.y || z != v.z;
+}
 std::ostream& operator<<(std::ostream &outs, const Vector3D &vector) {
 	return outs << "<" << vector.x << ", " << vector.y << ", " << vector.z
 			<< ">";

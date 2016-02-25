@@ -2,7 +2,7 @@
 #ifndef SRC_COLOR_H_
 #define SRC_COLOR_H_
 
-namespace {
+namespace graphics {
 	class Color {
 		public:
 			const double r;
