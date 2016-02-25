@@ -4,6 +4,7 @@
 #include "geometry\Vector3D.h"
 #include "scene\Group.h"
 #include "scene\Surface.h"
+#include "scene\Sphere.h"
 #include "geometry\Color.h"
 #include "geometry\Ray.h"
 
@@ -20,4 +21,13 @@ int main(int argc, char** argv) {
 	Ray refract = s.refract(Material(1.000277), Material(1.5));
 	std::cout << "strt " << refract.getStart() << std::endl;
 	std::cout << "dir " << refract.getDirection() << std::endl;
+	
+	Sphere* sphere = new Sphere(Vector3D(2,0,0), 1);
+	
+	for (double y=-2; y < 2; y += 0.02) {
+		Ray r = Ray(Vector3D(0,0,0), Vector3D(2,y,0));
+		std::cout << y << " => " << sphere->intersects(r) << std::endl;
+	}
+	
+	delete sphere;
 };
