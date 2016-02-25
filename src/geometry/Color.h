@@ -13,3 +13,5 @@ namespace {
 			Color operator+ (const Color& c);
 	};
 }
+
+#endif /* SRC_COLOR_H_ */
