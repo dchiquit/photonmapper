@@ -1,5 +1,5 @@
 
-
+#include <iostream>
 #include <cmath>
 #include "Sphere.h"
 
@@ -11,7 +11,8 @@ namespace graphics {
 		Vector3D oc = r.getStart() - pos;
 		double tmp = (r.getDirection()*oc);
 		tmp *= tmp;
-		tmp -= (r.getDirection()*r.getDirection())*(oc*oc - radius*radius);
+		tmp -= oc*oc;
+		tmp += radius*radius;
 		return tmp >= 0;
 	}
 	

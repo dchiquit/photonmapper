@@ -21,9 +21,11 @@ namespace graphics {
 			Vector3D getDirection() const;
 
 			Vector3D evaluateAtT(double t) const;
+			
+			bool intersectsBox(Vector3D lowerBound, Vector3D upperBound);
 
 		private:
-			const Vector3D start, direction;
+			const Vector3D start, direction, inverse;
 			friend std::ostream& operator<<(std::ostream& outs, const Ray& ray);
 	};
 }

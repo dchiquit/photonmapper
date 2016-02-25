@@ -6,7 +6,7 @@
 #include "Object.h"
 
 namespace graphics {
-	class Group : Object {
+	class Group {
 		private:
 			std::vector<Object> objects;
 		public:

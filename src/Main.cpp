@@ -22,12 +22,19 @@ int main(int argc, char** argv) {
 	std::cout << "strt " << refract.getStart() << std::endl;
 	std::cout << "dir " << refract.getDirection() << std::endl;
 	
-	Sphere* sphere = new Sphere(Vector3D(2,0,0), 1);
+	Sphere* sphere = new Sphere(Vector3D(0,0,2), 1.3);
 	
-	for (double y=-2; y < 2; y += 0.02) {
-		Ray r = Ray(Vector3D(0,0,0), Vector3D(2,y,0));
-		std::cout << y << " => " << sphere->intersects(r) << std::endl;
+	double incr = 0.1;
+	for (double y=-1.8; y < 1.8; y += incr) {
+		for (double x=-1.8; x<1.8; x+= incr) {
+			Ray r = Ray(Vector3D(0,0,0), Vector3D(x,y,2));
+			if (sphere->intersects(r)) {
+				std::cout<<" X";
+			} else {
+				std::cout << "  ";
+			}
+		}
+		std::cout << std::endl;
 	}
-	
 	delete sphere;
 };

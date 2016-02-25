@@ -49,7 +49,7 @@ Vector3D Vector3D::cross(const Vector3D& v) const {
 }
 
 double Vector3D::dot(const Vector3D& v) const {
-	return x * v.x + y * v.y + z * z;
+	return x * v.x + y * v.y + z * v.z;
 }
 
 Vector3D Vector3D::operator+(const Vector3D &rhs) const {
