@@ -2,6 +2,7 @@
 #ifndef SRC_KDTREE_H_
 #define SRC_KDTREE_H_
 
+#include "Geometry.h"
 #include "scene\Object.h"
 
 namespace graphics {

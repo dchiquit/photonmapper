@@ -12,11 +12,12 @@ namespace graphics {
 
 	class Surface {
 		private:
+		public:
 			const Object* obj;
 			const Ray src_ray;
+			const double distance;
 			const Vector3D pos;
 			const Vector3D normal;
-		public:
 			Surface(const Object* obj, Ray ray, double distance, Vector3D normal);
 			Ray reflect() const;
 			Ray refract(Material a, Material b) const;

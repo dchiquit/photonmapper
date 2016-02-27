@@ -11,6 +11,10 @@
 #include<ostream>
 
 namespace graphics {
+	
+const double POS_INF = 1.0/0.0;
+const double NEG_INF = -1.0/0.0;
+	
 class Vector3D {
 public:
 	Vector3D(const Vector3D &start, const Vector3D &end);

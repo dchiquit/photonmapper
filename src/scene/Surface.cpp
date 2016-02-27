@@ -6,7 +6,7 @@
 
 namespace graphics {
 	Surface::Surface(const Object* obj, Ray ray, double distance, Vector3D normal) :
-		obj(obj), src_ray(ray), pos(ray.evaluateAtT(distance)), normal(normal.normalized()) {};
+		obj(obj), src_ray(ray), distance(distance), pos(ray.evaluateAtT(distance)), normal(normal.normalized()) {};
 	Ray Surface::reflect() const {
 		return Ray(pos, src_ray.getDirection() + (normal * -2 * (normal*src_ray.getDirection())));
 	}

@@ -1,7 +1,7 @@
 #ifndef SRC_MATERIAL_H_
 #define SRC_MATERIAL_H_
 
-#include "geometry\Vector3D.h"
+#include "Geometry.h"
 
 namespace graphics {
 	class Material {

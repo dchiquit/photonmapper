@@ -3,7 +3,7 @@
 #ifndef SRC_SPHERE_H_
 #define SRC_SPHERE_H_
 
-#include "geometry\Ray.h"
+#include "Geometry.h"
 #include "scene\Surface.h"
 #include "scene\Object.h"
 
@@ -17,6 +17,7 @@ namespace graphics {
 			Sphere(Vector3D pos, double r);
 		
 			bool intersects(Ray r) const;
+			double intersectDistance(Ray r) const;
 			Surface intersection(Ray r) const;
 			Vector3D getLowerBound() const;
 			Vector3D getUpperBound() const;

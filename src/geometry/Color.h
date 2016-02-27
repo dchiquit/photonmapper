@@ -5,12 +5,13 @@
 namespace graphics {
 	class Color {
 		public:
-			const double r;
-			const double g;
-			const double b;
-			Color(double r, double g, double b);
+			const float r;
+			const float g;
+			const float b;
+			Color(float r, float g, float b);
 			Color(const Color& c);
 			Color operator+ (const Color& c);
+			Color operator* (const double d);
 	};
 }
 

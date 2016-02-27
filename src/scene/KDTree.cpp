@@ -9,7 +9,7 @@ namespace graphics {
 	}
 
 	Surface KDTree::intersection(Ray r) const {
-		return Surface(this, r, 1, Vector3D(1,1,1));
+		return Surface(NULL, r, 0, Vector3D(0,0,0));
 	}
 
 	Vector3D KDTree::getLowerBound() const {

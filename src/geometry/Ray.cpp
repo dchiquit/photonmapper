@@ -12,9 +12,6 @@
 
 namespace graphics {
 
-	const double POS_INF = 1.0/0.0;
-	const double NEG_INF = -1.0/0.0;
-
 	Ray::Ray(Vector3D start, Vector3D direction) :
 			start(start),
 			direction(direction.normalized()),
