@@ -1,6 +1,11 @@
 
-#include "scene\Material.h"
+#include "scene/Material.h"
 
 namespace graphics {
-	Material::Material(double n) : n(n) {}
+
+    Material::Material(double n) : n(n) {
+    }
+
+    Material::~Material() {
+    }
 }

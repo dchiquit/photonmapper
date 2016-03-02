@@ -1,2 +1,13 @@
-
+/obj/
+/bin/
+/build/
+/Default/
+/dist/
+/nbproject/
 *.[oa]
+*.*~
+*.swp
+.project
+.cproject
+.dep.inc
+/.settings/

@@ -3,10 +3,10 @@
 #ifndef SRC_RAYTRACE_H_
 #define SRC_RAYTRACE_H_
 
-#include "scene\Scene.h"
+#include "scene/Scene.h"
 
 namespace graphics {
-	
+
 }
 
 
