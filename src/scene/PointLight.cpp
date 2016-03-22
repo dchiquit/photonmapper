@@ -3,17 +3,17 @@
 
 namespace graphics {
 
-    PointLight::PointLight(Vector3D pos) : pos(pos) {
+    PointLight::PointLight(const Vector3D& pos) : pos(pos), radius(0) {
     }
 
     PointLight::~PointLight() {
     }
 
-    bool PointLight::canSee(Scene scene, Vector3D point) const {
+    bool PointLight::canSee(const Scene& scene, const Vector3D& point) const override {
         return scene.intersects(towardsLight(point));
     }
 
-    Ray PointLight::towardsLight(Vector3D point) const {
+    Ray PointLight::towardsLight(const Vector3D& point) const override {
         return Ray(point, pos - point);
     }
 

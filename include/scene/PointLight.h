@@ -11,11 +11,11 @@ namespace graphics {
     private:
         const Vector3D pos;
     public:
-        PointLight(Vector3D pos);
+        PointLight(const Vector3D& pos);
         virtual ~PointLight();
 
-        virtual bool canSee(Scene scene, Vector3D point) const;
-        virtual Ray towardsLight(Vector3D point) const;
+        virtual bool canSee(const Scene& scene, const Vector3D& point) const;
+        virtual Ray towardsLight(const Vector3D& point) const;
     };
 }
 

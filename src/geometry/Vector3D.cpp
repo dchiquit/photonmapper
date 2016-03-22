@@ -10,9 +10,13 @@
 
 #include "geometry/Vector3D.h"
 
+#define DOUBLE_COMP_ERROR 10E-5
+
 namespace graphics {
-    Vector3D::Vector3D() : Vector3D(0,0,0) {
+
+    Vector3D::Vector3D() : Vector3D(0, 0, 0) {
     }
+
     Vector3D::Vector3D(const Vector3D &start, const Vector3D &end) :
     x(end.x - start.x), y(end.y - start.y), z(end.z - start.z) {
     }
@@ -28,16 +32,18 @@ namespace graphics {
     Vector3D::~Vector3D() {
     }
 
-    Vector3D Vector3D::normalized() {
+    Vector3D Vector3D::normalized() const {
         auto length = magnitude();
-        return
-        {
-            x / length, y / length, z / length
-        };
+        if (length < 1 + DOUBLE_COMP_ERROR && length > 1 - DOUBLE_COMP_ERROR) {
+            return Vector3D{x, y, z};
+        } else {
+            auto invLen = 1 / length;
+            return Vector3D{x * invLen, y * invLen, z * invLen};
+        }
     }
 
-    double Vector3D::magnitude() {
-        if (_magnitude == 0) {
+    double Vector3D::magnitude() const {
+        if (_magnitude < 0) {
             _magnitude = sqrt(x * x + y * y + z * z);
         }
         return _magnitude;
@@ -49,10 +55,7 @@ namespace graphics {
         auto cy = z * v.x - x * v.z;
         auto cz = x * v.y - y * v.x;
 
-        return
-        {
-            cx, cy, cz
-        };
+        return Vector3D{cx, cy, cz};
     }
 
     double Vector3D::dot(const Vector3D& v) const {
@@ -60,38 +63,23 @@ namespace graphics {
     }
 
     Vector3D Vector3D::operator+(const Vector3D &rhs) const {
-        return
-        {
-            x + rhs.x, y + rhs.y, z + rhs.z
-        };
+        return Vector3D{x + rhs.x, y + rhs.y, z + rhs.z};
     }
 
     Vector3D Vector3D::operator-(const Vector3D &rhs) const {
-        return
-        {
-            x - rhs.x, y - rhs.y, z - rhs.z
-        };
+        return Vector3D{x - rhs.x, y - rhs.y, z - rhs.z};
     }
 
     Vector3D Vector3D::operator-() const {
-        return
-        {
-            -x, -y, -z
-        };
+        return Vector3D{-x, -y, -z};
     }
 
     Vector3D Vector3D::operator/(const double rhs) const {
-        return
-        {
-            x / rhs, y / rhs, z / rhs
-        };
+        return Vector3D{x / rhs, y / rhs, z / rhs};
     }
 
     Vector3D Vector3D::operator*(const double rhs) const {
-        return
-        {
-            x * rhs, y * rhs, z * rhs
-        };
+        return Vector3D{x * rhs, y * rhs, z * rhs};
     }
 
     double Vector3D::operator*(const Vector3D& v) const {

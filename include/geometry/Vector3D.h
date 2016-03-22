@@ -25,8 +25,8 @@ namespace graphics {
 
         const double x, y, z;
 
-        Vector3D normalized();
-        double magnitude();
+        Vector3D normalized() const;
+        double magnitude() const;
 
         Vector3D cross(const Vector3D& v) const;
         double dot(const Vector3D& v) const;
@@ -54,7 +54,7 @@ namespace graphics {
         friend Vector3D operator*(const double lhs, const Vector3D& rhs);
 
         // only calculate this once because sqrt is costly
-        double _magnitude = 0;
+        mutable double _magnitude = -1;
     };
 
 } /* namespace graphics */

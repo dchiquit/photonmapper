@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
     for (int i = 0; i < height * width * 3; i++) {
         buffer[i] = 0.0f;
     }
-
+    
     Object* sphere = new Sphere(Vector3D(0, 0, -7), 2);
     Scene scene{sphere};
     scene.addObject(new Sphere(Vector3D(4, 0, -7), 1));

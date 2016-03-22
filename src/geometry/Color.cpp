@@ -14,8 +14,77 @@ namespace graphics {
     Color::Color(const Color& c) :
     r(c.r), g(c.g), b(c.b), colorSpace(c.colorSpace) {
     }
+    
+    Color::Color(std::function<float(int)> spd) : 
+    r(0), g(0), b(0), colorSpace(ColorSpace::XYZ) {
+        int wavelength = 380;
+        for(int i = 0; i < colorMatchXYZ.size(); i ++, wavelength += 5) {
+            auto intensity = spd(wavelength);
+            r += intensity * colorMatchXYZ[i][0];
+            g += intensity * colorMatchXYZ[i][1];
+            b += intensity * colorMatchXYZ[i][2];
+        }
+    }
+    
+    Color::Color(std::array<float, 81> spd) : 
+    r(0), g(0), b(0), colorSpace(ColorSpace::XYZ) {
+        for(int i = 0; i < colorMatchXYZ.size(); i ++) {
+            auto intensity = spd[i];
+            r += intensity * colorMatchXYZ[i][0];
+            g += intensity * colorMatchXYZ[i][1];
+            b += intensity * colorMatchXYZ[i][2];
+        }
+    }
 
     Color::~Color() {
+    }
+
+    Color Color::gammaCorrected(double gamma) const {
+        float cr, cg, cb;
+        switch (colorSpace) {
+            case ColorSpace::RGB:
+                cr = r, cb = b, cg = g;
+                break;
+            case ColorSpace::XYZ: {
+                auto xyz = xyz_to_rgb();
+                cr = xyz.r, cb = xyz.g, cg = xyz.b;
+                break;
+            }
+            case ColorSpace::HSL: {
+                auto hsl = hsl_to_rgb();
+                cr = hsl.r, cb = hsl.g, cg = hsl.b;
+                break;
+            }
+            case ColorSpace::HSV: {
+                auto hsv = hsv_to_rgb();
+                cr = hsv.r, cb = hsv.g, cg = hsv.b;
+                break;
+            }
+            default:
+                break;
+        }
+
+        cr = pow(cr, gamma);
+        cg = pow(cg, gamma);
+        cb = pow(cb, gamma);
+
+        Color rgb = Color{cr, cg, cb, ColorSpace::RGB};
+
+        switch (colorSpace) {
+            case ColorSpace::RGB:
+            default:
+                return rgb;
+            case ColorSpace::XYZ:
+                return rgb.rgb_to_xyz();
+            case ColorSpace::HSL:
+                return rgb.rgb_to_hsl();
+            case ColorSpace::HSV:
+                return rgb.rgb_to_hsv();
+        }
+    }
+
+    Color Color::invGammeCorrected(double gamma) const {
+        return gammaCorrected(1 / gamma);
     }
 
     Color Color::inColorSpace(ColorSpace targetSpace) const {

@@ -12,11 +12,15 @@ namespace graphics {
 
     class Light {
     public:
-        Light();
+        Light(const float _radius);
         virtual ~Light();
 
-        virtual bool canSee(Scene scene, Vector3D point) const;
-        virtual Ray towardsLight(Vector3D point) const;
+        const float radius;
+
+        virtual bool canSee(const Scene& scene, const Vector3D& point) const;
+        virtual Ray towardsLight(const Vector3D& point) const;
+
+        bool isPoint() const;
     };
 }
 
