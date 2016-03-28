@@ -147,9 +147,17 @@ namespace graphics {
     Color Color::operator+(const Color& c) {
         return Color(r + c.r, g + c.g, b + c.b);
     }
+    
+    Color& Color::operator=(const Color& c) {
+        r = c.r;
+        g = c.g;
+        b = c.b;
+        colorSpace = c.colorSpace;
+        return *this;
+    }
 
-    Color Color::operator*(const double d) {
-        return Color(r * d, g * d, b * d);
+    Color operator*(const Color& c, const double d) {
+        return Color(c.r * d, c.g * d, c.b * d);
     }
 
     /*

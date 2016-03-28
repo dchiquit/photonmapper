@@ -15,15 +15,18 @@
 #define SPHERELIGHT_H
 
 #include <random>
+#include "Light.h"
 #include "geometry/Vector3D.h"
 
 namespace graphics {
 
-    class SphereLight : Light {
+    class SphereLight : public Light {
     public:
-        SphereLight(const float _radius);
+        SphereLight(const Vector3D pos, const float _radius);
         SphereLight(const SphereLight& orig);
         virtual ~SphereLight();
+        
+        const Vector3D pos;
     private:
         std::minstd_rand randEngine;
         std::uniform_real_distribution<float> dist;

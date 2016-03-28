@@ -17,17 +17,17 @@ namespace graphics {
         for (int px = 0; px < width; px++) {
             y = B;
             for (int py = 0; py < height; py++) {
-                Ray r = Ray(EYE, (FORWARD * D)+(RIGHT * x)+(UP * y));
+                Ray r {EYE, (FORWARD * D)+(RIGHT * x)+(UP * y)};
                 if (scene.intersects(r)) {
                     Surface s = scene.intersection(r);
-                    Color* c = new Color(0.1, 0.1, 0.1);
+                    Color c {0.1, 0.1, 0.1};
                     for (int l = 0; l < scene.numLights(); l++) {
                         if (scene.getLight(l)->canSee(scene, s.pos)) {
                             double dot = scene.getLight(l)->towardsLight(s.pos).getDirection() * s.normal;
-                            c = new Color(*c + (Color(1.0, 0.5, 1.0) * dot));
+                            c = c + (Color{1.0, 0.5, 1.0} * dot);
                         }
                     }
-                    setPixel(buffer, width, height, px, py, *c);
+                    setPixel(buffer, width, height, px, py, c);
                 }
                 y += (T - B) / height;
             }

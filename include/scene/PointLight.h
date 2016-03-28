@@ -14,8 +14,8 @@ namespace graphics {
         PointLight(const Vector3D& pos);
         virtual ~PointLight();
 
-        virtual bool canSee(const Scene& scene, const Vector3D& point) const;
-        virtual Ray towardsLight(const Vector3D& point) const;
+        virtual bool canSee(const Scene& scene, const Vector3D& point) const override;
+        virtual Ray towardsLight(const Vector3D& point) const override;
     };
 }
 

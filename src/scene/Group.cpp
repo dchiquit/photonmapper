@@ -9,15 +9,15 @@ namespace graphics {
 
     }
 
-    Group::Group(Object* seed) {
+    Group::Group(std::shared_ptr<Object> seed) {
         addObject(seed);
     }
 
     Group::~Group() {
     }
 
-    void Group::addObject(Object* obj) {
-        objects.insert(objects.end(), obj);
+    void Group::addObject(std::shared_ptr<Object> obj) {
+        objects.push_back(obj);
     }
 
     bool Group::intersects(Ray r) const {

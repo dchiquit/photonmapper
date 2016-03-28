@@ -2,6 +2,7 @@
 #define SRC_SCENE_H_
 
 #include <vector>
+#include <memory>
 
 #include "geometry/Geometry.h"
 #include "scene/Object.h"
@@ -14,14 +15,14 @@ namespace graphics {
     class Scene : public Group {
         using Group::Group;
     private:
-        std::vector<Light*> lights;
+        std::vector<std::shared_ptr<Light>> lights;
 
     public:
         Scene();
         virtual ~Scene();
 
-        void addLight(Light* light);
-        Light* getLight(int index) const;
+        void addLight(std::shared_ptr<Light> light);
+        std::shared_ptr<Light> getLight(int index) const;
         int numLights() const;
     };
 }

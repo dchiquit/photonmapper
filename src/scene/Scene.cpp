@@ -12,11 +12,11 @@ namespace graphics {
 
     }
 
-    void Scene::addLight(Light* light) {
-        lights.insert(lights.end(), light);
+    void Scene::addLight(std::shared_ptr<Light> light) {
+        lights.push_back(light);
     }
 
-    Light* Scene::getLight(int index) const {
+    std::shared_ptr<Light> Scene::getLight(int index) const {
         return lights[index];
     }
 

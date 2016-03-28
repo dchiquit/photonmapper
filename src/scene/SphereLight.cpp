@@ -17,19 +17,19 @@
 
 namespace graphics {
 
-    SphereLight::SphereLight(const float _radius) : radius(_radius), dist(std::uniform_real_distribution<double>{0, _radius}) {
+    SphereLight::SphereLight(const Vector3D pos, const float _radius) : Light(_radius), pos(pos), dist(std::uniform_real_distribution<float>{0, _radius}) {
         std::random_device r;
         std::seed_seq seed{r(), r(), r(), r(), r(), r()};
         randEngine = std::minstd_rand{seed};
     }
 
-    SphereLight::SphereLight(const SphereLight & orig) {
+    SphereLight::SphereLight(const SphereLight & orig) : Light(orig.radius), pos(orig.pos), dist(orig.dist) {
     }
 
     SphereLight::~SphereLight() {
     }
 
     Vector3D SphereLight::pointInSphere() {
-        
+        return {1,1,1};
     }
 }

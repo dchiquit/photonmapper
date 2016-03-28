@@ -21,7 +21,7 @@ namespace graphics {
         Surface(const Object* obj, Ray ray, double distance, Vector3D normal);
         virtual ~Surface();
         Ray reflect() const;
-        Ray refract(Material a, Material b) const;
+        Ray refract(Material a, Material b, double theta) const;
     };
 }
 

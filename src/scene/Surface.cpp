@@ -18,10 +18,19 @@ namespace graphics {
         return Ray(pos, src_ray.getDirection() + (normal * -2 * (normal * src_ray.getDirection())));
     }
 
-    Ray Surface::refract(Material a, Material b) const {
+    Ray Surface::refract(Material a, Material b, double theta) const {
         double dot = -(normal * src_ray.getDirection());
         double n = a.n / b.n;
         double c2 = sqrt(1 - n * n * (1 - dot * dot));
-        return Ray(pos, (src_ray.getDirection() * n) + (normal * (n * dot - c2)));
+        
+        double R = (a.n - b.n) / (a.n + b.n);
+        R *= R;
+        if (std::abs(theta) > 1E-5) {
+            double temp = 1-cos(theta);
+            double temp2 = temp*temp;
+            temp *= temp2*temp2;
+            R += (1-R)*temp;
+        }
+        return Ray(pos, (src_ray.getDirection() * n) + (normal * (n * dot - c2))); //TODO: this right
     }
 }
